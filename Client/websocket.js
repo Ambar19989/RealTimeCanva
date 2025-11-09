@@ -1,5 +1,5 @@
 export class WebSocketClient {
-  constructor(serverUrl = 'http://localhost:3000') {
+  constructor(serverUrl = 'https://real-time-canva-server.onrender.com') {
     this.serverUrl = serverUrl;
     this.socket = null;
     this.connected = false;
