@@ -50,7 +50,12 @@ class CollaborativeCanvasApp {
     document.querySelector('.canvas-wrapper').appendChild(this.remoteCursorsContainer);
     
     this.canvasManager = new CanvasManager(this.canvas);
-    this.wsClient = new WebSocketClient('http://localhost:3000');
+    // Select backend based on current hostname: use localhost for local testing,
+    // otherwise use the Render deployment URL provided by the user.
+    const backendUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:3000'
+      : 'https://realtimecanva.onrender.com';
+    this.wsClient = new WebSocketClient(backendUrl);
     
     this.startConflictMonitoring();
     this.init();
